@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right Click Menu</title>
+    <style>
+        body,*{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width: 100%;
+            height: 100vh;
+            background: rgb(41, 41, 40);
+            color: rgb(0, 0, 0);
+
+            position: relative;
+            overflow: hidden;
+        }
+        .box{
+            width: 180px;
+            height: 250px;
+            background: rgb(34, 34, 34);
+            color: rgba(255, 255, 255, 0.831);
+            padding:10px 5px;
+            border-radius: 5px;
+            display: none;
+
+            position: absolute;
+        }
+        ul{
+            list-style: none;
+        }
+        ul:not(:last-child){
+            border-bottom: 1px solid rgba(0, 0, 0, 0.507);
+        }
+        li{
+            padding: 6px 0px 5px 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        li:hover{
+            background: rgb(40, 40, 40);
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="box">
+            <ul>
+                <li>View</li>
+                <li>Sort By</li>
+                <li>Refresh</li>              
+            </ul>
+            <ul>
+                <li>Undo</li>
+                <li>Redo</li>
+                <li>New</li>              
+            </ul>
+            <ul>
+                <li>Properties</li>
+                <li>Show more options</li>
+                <li>New</li>              
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        document.onclick = hideMenu;
+        document.oncontextmenu = rightClick;
+
+        function hideMenu() {
+            document.querySelector(".box").style.display = "none";
+        }
+        function rightClick(e) {
+            e.preventDefault();
+            let box = document.querySelector(".box")
+            box.style.display = "block";
+            box.style.top = e.pageY + "px";
+            box.style.left = e.pageX + "px"
+        }
+    </script>
+</body>
+</html>
